@@ -92,9 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(data => {
       console.log(data.choices[0].message.content)
       gptOutput = data.choices[0].message.content;
-      // window.location.href = 'output.html';
       outputArea.value = gptOutput;
 
+      let msg = new SpeechSynthesisUtterance();
+      msg.text = gptOutput;
+      window.speechSynthesis.speak(msg)
     })
     .catch(error => console.error('Error:', error));
   }
