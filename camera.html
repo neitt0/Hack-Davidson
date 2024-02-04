@@ -1,79 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SummarAIz</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="index.js" defer></script>
-  <!-- <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script> -->
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      background: radial-gradient(circle at 50% 50%, #3498db, #9b59b6);
-      overflow: scroll;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SummarAIz</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 50%, #3498db, #9b59b6);
+            overflow: hidden;
+        }
 
-    video {
-      width: 100%;
-      max-width: 640px;
-      height: auto;
-    }
+        #title-container {
+            /* display: flex; */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 480px;
+            height: 620px;
+            overflow: scroll;
+            text-align: center;
+        }
 
-    button {
-      margin-top: 10px;
-      padding: 10px;
-      font-size: 16px;
-      background-color: #3498db;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+        video {
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
 
-    button:hover {
-      background-color: #2980b9;
-    }
+        label {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: rgb(232, 232, 233);
+        }
 
-    canvas {
-      display: none; 
-      /* Hide the canvas by default */
-    }
+        select {
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            /* height: 60px; */
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            appearance: none;
+        }
 
-    textarea {
-      margin-top: 10px;
-      padding: 10px;
-      font-size: 18px;
-      width: 100%;
-      max-width: 640px;
-      height: 200px;
-      border: 1px solid #3498db;
-      border-radius: 8px;
-      resize: none;
-      box-sizing: border-box;
-      color: #333;
-    }
+        select:hover {
+            background-color: #2980b9;
+        }
 
-    textarea:focus {
-      outline: none;
-      border-color: #2980b9;
-    }
-  </style>
+        button, .pageLink {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #23ba58;
+            width: 100%;
+            height: 60px;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #but {
+            background-color: #8ea9ba;
+            height: auto;
+        }
+
+        .pageLink {
+            width: auto;
+            height: auto;
+            margin-top: 20px;
+            background-color: #2e678d;
+            text-align: center;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            margin-bottom: 40px;
+        }
+
+        button:hover, .pageLink:hover {
+            background-color: #2980b9;
+        }
+
+        canvas {
+            /* Hide the canvas by default */
+            display: none;
+            width: 99%;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        textarea {
+            margin: 10px 0px 10px 0px;
+            padding: 10px;
+            font-size: 18px;
+            width: 100%;
+            max-width: 640px;
+            height: 200px;
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            resize: none;
+            box-sizing: border-box;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #2980b9;
+        }
+    </style>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <script src="index.js" defer></script>
 </head>
 
 <body>
-  <div><video id="vid" autoplay></video></div>
-  <button id="but" autoplay>Open WebCam</button>
-  <button class="snap takePicture">Take Picture</button>
-  <canvas width="640" height="480"></canvas>
-  <textarea name="chatGPTOutput" id="chatGPTOutput" readonly>ChatGPT description</textarea>
+    <div id="title-container">
+        <video id="vid" autoplay></video>
+        
+        <label for="outputType">Choose an output type:</label>
+        <select name="outputType" id="outputType">
+            <option value="describe the picture">Describe the picture</option>
+            <option value="summarize the text in the picture">Summarize text</option>
+        </select>
+        <button class="snap takePicture">Take Picture / Press Spacebar</button>
+        <canvas width="640" height="480"></canvas>
+        <textarea name="chatGPTOutput" id="chatGPTOutput" readonly>ChatGPT computing...</textarea>
+    </div>
 </body>
 </html>

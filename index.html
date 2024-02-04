@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SummarAIze - Main</title>
+    <title>SummarAIz - Main</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -14,47 +14,52 @@
             justify-content: center;
             min-height: 100vh;
             overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #2c3e50, #1a1a1a);
             transition: background 0.5s ease-in-out;
         }
-
+    
         #title-container {
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
             width: 480px;
             height: 620px;
             padding: 20px;
             margin: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
+    
             display: flex;
             align-items: center;
         }
-
+    
         .saiimage {
             width: 70%;
             border-radius: 0px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
             margin-bottom: 5px;
         }
-
+    
         h1 {
             color: #3498db;
-            font-size: 2em;
-            margin-top: 10px;
+            font-size: 4em;
+            margin: 10px 0px -10px 0px;
             max-width: 500px;
         }
-
+    
         p {
             font-size: 1.5em;
-            color: #333;
+            color: #fff;
             margin-bottom: 30px;
             max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-left: 10px;
+            margin-right: 10px;
+            letter-spacing: 3px;
         }
+    
         #start-button {
             padding: 15px 30px;
+            margin-top: 20px;
+            width: 70%;
             font-size: 18px;
             background-color: #3498db;
             color: #fff;
@@ -65,13 +70,12 @@
             text-decoration: none;
             display: inline-block;
         }
-
+    
         #start-button:hover {
             background-color: #2980b9;
         }
-
-
     </style>
+    
     <script>
         document.addEventListener("mousemove", function(e) {
             var x = e.clientX / window.innerWidth - 0.5;
@@ -85,7 +89,7 @@
         <div>
             <img src="sai.png" alt="SummarAIze Logo" class="saiimage">
             <h1>SummarAIze</h1>
-            <p>Reading made easier for those who have dyslexia or visual impairment.</p>
+            <p>"See the world through words"</p>
             <a href="camera.html" id="start-button">Start</a> <br>
         </div>
     </div>

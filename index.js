@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let canvas = document.querySelector('canvas');
     let takePicture = document.querySelector(".takePicture");
     let mediaDevices = navigator.mediaDevices;
+
+    let outputType = document.getElementById('outputType').value
+
     
     vid.muted = true;
     
@@ -23,16 +26,32 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(alert);
     
     let context = canvas.getContext('2d');
-    takePicture.addEventListener('click', async () => {
+
+    async function getCanvasPicture() {
+      // get dropdown options
+      outputType = document.getElementById('outputType').value
+      console.log(outputType)
+
       console.log("Taking picture...");
+      canvas.style.display = 'block'
       
       // Draw the current video frame onto the canvas
       context.drawImage(video, 0, 0, 640, 480);
-      
+        
       // Call detectObjects function with the video element
       const result = await detectObjects(video);
       console.log(result);
-      
+
+    }
+
+    takePicture.addEventListener('click', async () => {
+      return getCanvasPicture()
+    });
+
+    window.addEventListener('keydown', async (event) => {
+      if (event.code === 'Space') {
+        return getCanvasPicture()
+      }
     });
   });
   
@@ -45,14 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
     tempContext.drawImage(videoElement, 0, 0, tempCanvas.width, tempCanvas.height);
     
     // Convert the canvas content to base64
+    /////// Help from mentor
     const base64Image = tempCanvas.toDataURL('image/jpeg').split(',')[1];
-    
     askGpt(base64Image)
     
   }
-  
-  
-  
   
   function askGpt(base64Image){
     
@@ -70,13 +86,13 @@ document.addEventListener("DOMContentLoaded", () => {
             "content": [
               {
                 "type": "text",
-                "text": "What's in this image?"
+                "text": `${outputType}`
               },
               {
                 "type": "image_url",
                 "image_url": {
                   "url": `data:image/jpeg;base64,${base64Image}`
-                }
+                } /////// Help from mentor
               }
             ]
           }
@@ -90,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch('https://api.openai.com/v1/chat/completions', requestOptions)
     .then(response => response.json())
     .then(data => {
+      /////// Help from mentor
       console.log(data.choices[0].message.content)
       gptOutput = data.choices[0].message.content;
       outputArea.value = gptOutput;
