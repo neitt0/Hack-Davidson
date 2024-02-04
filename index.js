@@ -1,4 +1,4 @@
-const apiKey = "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";
+const apiKey = "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";
 
 document.addEventListener("DOMContentLoaded", () => {
     let video = document.getElementById("vid");
@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let mediaDevices = navigator.mediaDevices;
 
     let outputType = document.getElementById('outputType').value
+    console.log(typeof outputType)
 
     
     vid.muted = true;
@@ -28,10 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let context = canvas.getContext('2d');
 
     async function getCanvasPicture() {
-      // get dropdown options
-      outputType = document.getElementById('outputType').value
-      console.log(outputType)
-
       console.log("Taking picture...");
       canvas.style.display = 'block'
       
@@ -45,10 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     takePicture.addEventListener('click', async () => {
+      // get dropdown options
+      outputType = document.getElementById('outputType').value
+      console.log(outputType)
+      
       return getCanvasPicture()
     });
 
     window.addEventListener('keydown', async (event) => {
+      // get dropdown options
+      outputType = document.getElementById('outputType').value
+      console.log(outputType)
+
       if (event.code === 'Space') {
         return getCanvasPicture()
       }
@@ -86,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "content": [
               {
                 "type": "text",
-                "text": `${outputType}`
+                "text": `What is this image?`
               },
               {
                 "type": "image_url",
@@ -107,8 +112,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(response => response.json())
     .then(data => {
       /////// Help from mentor
-      console.log(data.choices[0].message.content)
       gptOutput = data.choices[0].message.content;
+      console.log(gptOutput)
       outputArea.value = gptOutput;
 
       let msg = new SpeechSynthesisUtterance();
