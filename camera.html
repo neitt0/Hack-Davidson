@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SummarAIz</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js" defer></script>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 50%, #3498db, #9b59b6);
+      overflow: scroll;
+    }
+
+    video {
+      width: 100%;
+      max-width: 640px;
+      height: auto;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    canvas {
+      display: none; 
+      /* Hide the canvas by default */
+    }
+
+    textarea {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 18px;
+      width: 100%;
+      max-width: 640px;
+      height: 200px;
+      border: 1px solid #3498db;
+      border-radius: 8px;
+      resize: none;
+      box-sizing: border-box;
+      color: #333;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #2980b9;
+    }
+  </style>
+</head>
+
+<body>
+  <div><video id="vid" autoplay></video></div>
+  <button id="but" autoplay>Open WebCam</button>
+  <button class="snap takePicture">Take Picture</button>
+  <canvas width="640" height="480"></canvas>
+  <textarea name="chatGPTOutput" id="chatGPTOutput" readonly>ChatGPT description</textarea>
+</body>
+</html>
