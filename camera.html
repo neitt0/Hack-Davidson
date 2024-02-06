@@ -130,6 +130,14 @@
     </style>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <script src="index.js" defer></script>
+
+    <script>
+        document.addEventListener("mousemove", function(e) {
+            var x = e.clientX / window.innerWidth - 0.5;
+            var y = e.clientY / window.innerHeight - 0.5;
+            document.body.style.background = 'radial-gradient(circle at ' + (x * 100 + 50) + '% ' + (y * 100 + 50) + '%, #3498db, #9b59b6)';
+        });
+    </script>
 </head>
 
 <body>

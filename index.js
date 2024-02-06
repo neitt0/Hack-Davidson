@@ -1,4 +1,4 @@
-const apiKey = "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";
+const apiKey = // "YOUR OPENAI API KEY GOES HERE";
 
 document.addEventListener("DOMContentLoaded", () => {
     let video = document.getElementById("vid");
@@ -122,5 +122,4 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(error => console.error('Error:', error));
   }
-  
   
